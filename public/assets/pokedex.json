@@ -1,0 +1,14 @@
+[
+      {"_id":"1",
+	    "nome":"Pikachu",
+	    "descricao":"eletric"},
+
+      {"_id":"2",
+	    "nome":"Bulbasauro",
+	    "descricao":"grass"},
+
+      {"_id":"3",
+	    "nome":"Vitor",
+	    "descricao":"fire"}
+
+]

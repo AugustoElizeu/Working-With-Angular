@@ -1,0 +1,36 @@
+<mat-card appearance="outlined" class="mat-cardo">
+  <mat-card-content><mat-toolbar color="accent" style="height: 2em;">
+      <span>Minha Pokedex</span>
+  </mat-toolbar>
+  <div *ngIf="pokemon$ | async as poke; else loading">
+<table mat-table [dataSource]="poke" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="nome">
+    <th mat-header-cell *matHeaderCellDef> Nome </th>
+    <td mat-cell *matCellDef="let element"> {{ element.nome }} </td>
+
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="descricao">
+    <th mat-header-cell *matHeaderCellDef> descrição </th>
+    <td mat-cell *matCellDef="let element"> {{ element.descricao }} <mat-icon aria-hidden="false" aria-label="Categoria"> {{ element.descricao | category }}</mat-icon></td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>
+<ng-template #loading>
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
+
+</mat-card-content>
+</mat-card>
+
