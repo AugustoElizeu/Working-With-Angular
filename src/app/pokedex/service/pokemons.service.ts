@@ -9,7 +9,7 @@ import { delay, first, take, tap } from 'rxjs';
 })
 export class PokemonsService {
 
-  private readonly endPoint = "/assets/pokedex.json"
+  private readonly endPoint = "http://localhost:8080/api/pokedexList"
 
   constructor(private http: HttpClient) { }
 
@@ -18,6 +18,6 @@ export class PokemonsService {
       {_id:'1',nome:'Pikachu',descricao:'Pokémon Mega fogoparece um ratinho'},
       {_id:'2',nome:"Bulbasauro",descricao:"Filho do thyplosion"}
     ];*/
-    return this.http.get<Pokemons[]>(this.endPoint).pipe(first(),delay(5000),tap(pokemon => console.log(pokemon)));
+    return this.http.get<Pokemons[]>(this.endPoint).pipe(first(),tap(pokemon => console.log(pokemon)));
   }
 }

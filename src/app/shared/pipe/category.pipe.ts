@@ -14,6 +14,8 @@ export class CategoryPipe implements PipeTransform {
         return 'local_fire_department';
       case 'eletric':
         return 'bolt';
+      case 'Agua':
+        return 'water_drop';
       default:
         return ''; // um valor padrão, se necessário
     }
