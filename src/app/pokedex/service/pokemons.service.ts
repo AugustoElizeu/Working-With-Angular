@@ -9,7 +9,7 @@ import { delay, first, take, tap } from 'rxjs';
 })
 export class PokemonsService {
 
-  private readonly endPoint = "http://localhost:8080/api/pokedexList"
+  private readonly endPoint = "/api/pokedexList"
 
   constructor(private http: HttpClient) { }
 
@@ -19,5 +19,9 @@ export class PokemonsService {
       {_id:'2',nome:"Bulbasauro",descricao:"Filho do thyplosion"}
     ];*/
     return this.http.get<Pokemons[]>(this.endPoint).pipe(first(),tap(pokemon => console.log(pokemon)));
+  }
+
+  save(record: Pokemons){
+    return this.http.post<Pokemons[]>(this.endPoint, record).pipe(first());
   }
 }
