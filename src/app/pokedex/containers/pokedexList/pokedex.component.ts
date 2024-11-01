@@ -1,25 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { catchError, Observable, of } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { catchError, Observable, of } from 'rxjs';
 
-import { ErrorDialogComponent } from '../../shared/component/errordialog/errordialog.component';
-import { CategoryPipe } from '../../shared/pipe/category.pipe';
-import { Pokemons } from '../Models/Pokemons';
-import { PokemonsService } from '../service/pokemons.service';
-import { relative } from 'path';
+import { CategoryPipe } from '../../../shared/pipe/category.pipe';
+import { Pokemons } from '../../Models/Pokemons';
+import { ErrorDialogComponent } from './../../../shared/component/errordialog/errordialog.component';
+import { PokemonsService } from './../../service/pokemons.service';
+import { ListDexComponent } from '../../Components/list-dex/list-dex.component';
 
 @Component({
   selector: 'app-pokedex',
   standalone: true,
-  imports: [CommonModule,MatTableModule,MatCardModule,MatToolbarModule,MatProgressSpinnerModule,ErrorDialogComponent,MatIconModule,CategoryPipe,MatButtonModule],
+  imports: [CommonModule, MatCardModule, MatToolbarModule, MatProgressSpinnerModule, ErrorDialogComponent, MatIconModule, CategoryPipe,ListDexComponent],
   templateUrl: './pokedex.component.html',
   styleUrl: './pokedex.component.scss'
 })
@@ -50,5 +48,8 @@ export class PokedexComponent  implements OnInit{
 
   onAdd(){
     this.router.navigate(['new'], {relativeTo:this.acroute});
+  }
+  onEdit(pokemons: Pokemons){
+    this.router.navigate(['edit', pokemons._id], {relativeTo:this.acroute});
   }
 }

@@ -1,0 +1,40 @@
+<mat-table [dataSource]="poke">
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="nome">
+    <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.nome }} </mat-cell>
+
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="descricao">
+    <mat-header-cell *matHeaderCellDef> descrição </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.descricao }}</mat-cell>
+  </ng-container>
+  <!-- Name Column -->
+  <ng-container matColumnDef="tipo">
+    <mat-header-cell *matHeaderCellDef> descrição </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.tipo }} <mat-icon aria-hidden="false" aria-label="Categoria"> {{ element.tipo | category }}</mat-icon></mat-cell>
+  </ng-container>
+  <!-- Name Column -->
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef class="action-column-header">
+      <button mat-mini-fab aria-label="Adicionar Curso" color="primary">
+        <mat-icon (click)="onAdd()">add</mat-icon>
+      </button>
+    </mat-header-cell>
+
+    <mat-cell *matCellDef="let pokemon" class="action-column">
+      <button mat-icon-button aria-label="Editar Curso">
+        <mat-icon (click)="onEdit(pokemon)">edit</mat-icon> <!-- Use um ícone mais apropriado -->
+      </button>
+      <button mat-icon-button aria-label="Remover Curso" color="warn">
+        <mat-icon>delete</mat-icon> <!-- Use um ícone mais apropriado -->
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

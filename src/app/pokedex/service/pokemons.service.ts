@@ -18,10 +18,30 @@ export class PokemonsService {
       {_id:'1',nome:'Pikachu',descricao:'Pokémon Mega fogoparece um ratinho'},
       {_id:'2',nome:"Bulbasauro",descricao:"Filho do thyplosion"}
     ];*/
-    return this.http.get<Pokemons[]>(this.endPoint).pipe(first(),tap(pokemon => console.log(pokemon)));
+    return this.http.get<Pokemons[]>(this.endPoint).pipe(first(),
+    //delay(1000),
+    //tap(pokemon => console.log(pokemon))
+  );
   }
 
-  save(record: Pokemons){
+  loadById(id:string){
+    return this.http.get<Pokemons>(`${this.endPoint}/${id}`);
+  }
+
+  save(record: Partial<Pokemons>){
+    if(record._id){
+      return this.update(record);
+    }
+    return this.create(record);
+  }
+
+  private create(record: Partial<Pokemons>) {
     return this.http.post<Pokemons[]>(this.endPoint, record).pipe(first());
   }
+
+  private update(record: Partial<Pokemons>) {
+    return this.http.put<Pokemons[]>(`${this.endPoint}/${record._id}`, record).pipe(first());
+  }
+
+
 }

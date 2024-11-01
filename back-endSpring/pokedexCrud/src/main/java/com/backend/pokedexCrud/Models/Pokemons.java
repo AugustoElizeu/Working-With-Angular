@@ -1,7 +1,5 @@
 package com.backend.pokedexCrud.Models;
 
-import java.util.UUID;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
@@ -16,9 +14,9 @@ import jakarta.persistence.Table;
 public class Pokemons {
 		
 		@Id
-		@GeneratedValue(strategy=GenerationType.UUID)
+		@GeneratedValue(strategy=GenerationType.IDENTITY)
 		@JsonProperty("_id")
-		private UUID Id;
+		private Long Id;
 		@Column(length=15, nullable = false)
 		private String nome;
 		
@@ -32,7 +30,7 @@ public class Pokemons {
 			
 		}
 	
-		public Pokemons(UUID id, String nome, String tipo, String descricao) {
+		public Pokemons(Long id, String nome, String tipo, String descricao) {
 			super();
 			Id = id;
 			this.nome = nome;
@@ -40,11 +38,11 @@ public class Pokemons {
 			Descricao = descricao;
 		}
 
-		public UUID getId() {
+		public Long getId() {
 			return Id;
 		}
 
-		public void setId(UUID id) {
+		public void setId(Long id) {
 			Id = id;
 		}
 
